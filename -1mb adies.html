@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="tanggal-acara" content="5 Mei 2025">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>The Empowering Indonesia 8 Years of Impact</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        
+        .invite-container {
+            color: #fff;
+            font-family: "Inter", cursive;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .judul-cover {
+            font-family: "Inter", cursive;
+            font-size: 2em;
+            font-weight: 900;
+            margin: 10px 0;
+            color: #ffe9c7;
+        }
+
+        .guest-name {
+            font-weight: bold;
+            font-size: 1.4em;
+            font-weight: 900;
+            margin-top: 8px;
+            color: #fff8f1;
+        }
+
+        .invite-container {
+            font-family: "Inter", cursive;
+            font-size: 2.2em;
+            font-weight: 900;
+            margin: 10px 0;
+            color: #ffe9c7;
+        }
+
+        #undangan {
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: none;
+        }
+
+        #undangan.tampil {
+            display: block;
+            opacity: 1;
+        }
+
+        .invite-container {
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .invite-container {
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-top: 8px;
+            color: #fff8f1;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: url("cyberpunk.avif");
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #ucapan-container {
+            width: 100%;
+            /* agar fleksibel penuh */
+            max-width: 480px;
+            /* lebar maksimum (bisa kamu sesuaikan) */
+            min-height: 100vh;
+            /* tinggi minimum setinggi layar */
+            margin: 0 auto;
+            /* supaya di tengah */
+            box-sizing: border-box;
+            /* padding dan border tetap di dalam width */
+            overflow: hidden;
+            /* mencegah konten keluar */
+            background-color: #fff;
+            /* warna latar kalau butuh */
+            display: none; /*ini mengakibatkan tampilan ucapan dan doa tidak tampil*/
+        }
+
+        .wadah-daftarucapan {
+            max-height: 6em;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+
+        .ucapan-list {
+            max-height: 6em;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+
+        .ucapan-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .ucapan-list::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 4px;
+        }
+
+        .ucapan-list::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+
+        .ucapan-item {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .ucapan-item:last-child {
+            border-bottom: none;
+        }
+
+        .card {
+            background: url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+                #fffaed;
+            /* Warna dasar kertas kuning muda + tekstur */
+            color: #333;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 15px;
+            /* atas-bawah 0, kiri-kanan 15px */
+            padding: 25px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease forwards;
+            background-size: cover;
+        }
+
+        .bingkai-foto {
+            width: 250px;
+            /* Lebar oval */
+            height: 300px;
+            /* Tinggi oval */
+            background-color: #fff;
+            border-radius: 50% / 50%;
+            /* Membuat bentuk oval vertikal */
+            overflow: hidden;
+            /* Penting untuk membatasi gambar di dalam oval */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .bingkai-foto img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            /* atau coba contain */
+        }
+
+        .nama-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .nama-container img {
+            height: 30px;
+            width: auto;
+        }
+
+        .nama-container h2 {
+            font-size: 1.8em;
+            font-family: "Inter", cursive;
+            margin: 0;
+            color: #333;
+        }
+
+        .jadwal-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 5px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .jadwal-item h4 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: large;
+            font-family: "Poppins", sans-serif;
+            color: #2e7d32;
+        }
+
+        form#bukuTamuForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            max-width: 500px;
+            margin-inline: auto;
+        }
+
+        #bukuTamuForm input,
+        #bukuTamuForm textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        #bukuTamuForm button {
+            padding: 10px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #daftarUcapan {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        #daftarUcapan .ucapan {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .maps-btn {
+            display: inline-block;
+            margin-top: 8px;
+            background-color: #2e7d32;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Inter", cursive;
+            font-weight: 900;
+
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        h2 {
+            font-size: 1.7em;
+        }
+
+        h3 {
+            font-size: 1.4em;
+        }
+
+        .footer {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 30px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        #lightbox:target {
+            display: flex;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        form#bukuTamuForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        input,
+        textarea,
+        button {
+            font-family: "Poppins", sans-serif;
+            font-size: 1em;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #2e7d32;
+            color: white;
+            cursor: pointer;
+        }
+
+        .ucapan {
+            background: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            color: #333;
+        }
+
+        .open-btn {
+            font-family: "Inter", cursive;
+            font-size: 15px;
+            font-weight: 800;
+            width: 180px;
+            height: 50px;
+            background-color: #1d20b9;
+            box-shadow: #333;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            margin-top: 70px;
+        }
+
+        a.rsvp-btn {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+        }
+
+        .section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rekening {
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            max-width: 300px;
+            background: #f9f9f9;
+        }
+
+        .rekening button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .rekening button:hover {
+            background: #0056b3;
+        }
+
+        .rsvp-container {
+        background: #fff;
+        padding: 15px;
+        margin-top: 30px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin-inline: auto;
+        color: #333;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        #form-rsvp input,
+        #form-rsvp select,
+        #form-rsvp button {
+        margin: 8px 0;
+        padding: 10px;
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        }
+
+        
+
+
+        /* Responsive adjustment */
+        @media (max-width: 600px) {
+            .invite-container .judul-cover {
+                font-size: 1.8em;
+            }
+
+            .invite-container .guest-name {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <div id="intro" style="margin-bottom: 40px">
+            <div class="invite-container">
+                <div style="color:#fff ;font-size:24px ;font-weight: 900; margin-top: 50px;">Welcome to</div>
+                <div class=" judul-cover">The Empowering Indonesia 8 Years of Impact</div>
+                <div style="font-weight: 900; margin-top: 30px;">Mr/ Mrs,</div>
+
+                <div id="nama-tamu" class="guest-name">Tamu Undangan</div>
+
+                <script>
+                    // Ambil parameter nama tamu dari URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const namaTamu = urlParams.get("to") || "Tamu Undangan";
+                    document.getElementById("nama-tamu").textContent =
+                        decodeURIComponent(namaTamu.replace(/\+/g, " "));
+                </script>
+            </div>
+
+            <!-- Tombol Buka -->
+            <button class="open-btn" onclick="bukaUndangan()">Open Invitation</button>
+        </div>
+
+        <!-- Konten Undangan -->
+        <div class="card" id="undangan">
+
+            <h1 style="margin-top: 20px; margin-bottom: 30px;">The Empowering Indonesia 8 Years of Impact</h1>
+
+            <div style="position: relative; display: inline-block; width: 250px; height: 300px;">
+                <!-- Foto di dalam -->
+                <img src="naruhina.jpg" alt="foto pasangan" style="
+                    width: 85%;
+                    height: 85%;
+                    object-fit: cover;
+                    position: relative;
+                    z-index: 1;
+                    border-radius: 50%; /* jika ingin bentuk oval/bulat */
+                " />
+            </div>
+            <!-- Nama Pengantin -->
+            <div class="nama-container">
+                <h2>Pria & Wanita</h2>
+            </div>
+
+            <!-- Tanggal Acara -->
+            <p id="tanggalAcara" style="font-size: small; margin-top: 10px; margin-bottom: 10px;"></p>
+
+            <script>
+                // Ambil isi dari meta tag
+                const tanggal = document.querySelector('meta[name="tanggal-acara"]').getAttribute('content');
+
+                // Tampilkan ke elemen paragraf
+                document.getElementById('tanggalAcara').innerHTML = "<strong>" + tanggal + "</strong>";
+            </script>
+
+            <p style="font-size: 12px;">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu
+                sendiri,
+                agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.
+                Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang
+                berpikir."
+            </p>
+
+            <p style="font-size: small; font-style: italic; margin-bottom: 20px;">
+                <strong>(Q.S. Ar-Rum: 21)</strong>
+            </p>
+
+            <div style="position: relative; display: inline-block; width: 250px; height: 5px;">
+                <!-- Ornamen Tengah -->
+                <img src="ornament line.png" style="
+        width: 40%;
+        height: auto;
+        position: relative;" />
+            </div>
+
+            <p style="font-size: small">
+                <strong><em>Bismillahirrahmanirrahim </em></strong><br>
+                Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk
+                hadir dalam pernikahan kami:
+            </p>
+
+            <h2"><strong>Jadwal Acara</strong></h2">
+            <div class="jadwal-item">
+                <h4>Akad Nikah</h4>
+                <p>Sabtu, 17 Desember 2025 - Pukul 10.00 WIB</p>
+                <p>Aula PT. Danusari Mitra Sejahtera</p>
+                <a href="https://www.google.com/maps?q=Aula+PT.+Danusari+Mitra+Sejahtera" target="_blank"
+                    class="maps-btn">📍
+                    Lihat Lokasi</a>
+            </div>
+
+            <!-- <div class="jadwal-item">
+                <h4>Resepsi</h4>
+                <p>Sabtu, 17 Desember 2025 - Pukul 12.00 WIB</p>
+                <p>Aula PT. Danusari Mitra Sejahtera</p>
+                <a href="https://www.google.com/maps?q=Aula+PT.+Danusari+Mitra+Sejahtera" target="_blank"
+                    class="maps-btn">📍
+                    Lihat Lokasi</a>
+            </div> -->
+
+            <h3>Hitung Mundur</h3>
+            <p id="countdown" style="font-weight: bold; font-size: 1.2em"></p>
+
+            <h3>Galeri</h3>
+            <div class="gallery">
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/468799900_1514914073244777_5212796667653713633_n.jpg"
+                        alt="foto1" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 2.jpeg"
+                        alt="foto2" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 3.jpeg"
+                        alt="foto3" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 4.jpeg"
+                        alt="foto4" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 5.jpeg"
+                        alt="foto5" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 8.jpeg"
+                        alt="foto8" /></a>
+                <a href="#lightbox"><img
+                        src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 9.jpeg"
+                        alt="foto9" /></a>
+                <!-- Tambah foto lain kalau mau -->
+            </div>
+
+            <div id="lightbox">
+                <img id="lightbox-img" src="" alt="preview" />
+            </div>
+
+            <!-- Mulai blok ucapan -->
+            <div id="ucapan-container">
+            <h3>Ucapan & Doa</h3>
+            <form id="bukuTamuForm">
+                <input type="text" id="namaBukuTamu" placeholder="Nama Anda" required />
+                <textarea id="pesanBukuTamu" placeholder="Ucapan atau doa..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+            </div>
+            <!-- Selesai blok ucapan -->
+
+            <div class="rsvp-container">
+            <h3>Konfirmasi Kehadiran</h3>
+            <form id="form-rsvp">
+            <input type="text" id="nama-rsvp" readonly />
+            <select id="kehadiran" required>
+                <option value="">Pilih Kehadiran</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+            <button type="submit">Kirim</button>
+            </form>
+
+            <div id="hasil-rsvp"></div>
+            <div id="daftar-rsvp" style="margin-top:10px;"></div>
+            <div id="resume-rsvp" style="margin-top:10px; font-weight: bold;"></div>
+
+
+            <div id="ucapan-container">
+                <form id="bukuTamuForm">
+            <div class="ucapan-list" id="daftarUcapan"></div>
+
+            <!-- <section id="gift" class="section">
+                <h3>Amplop Digital</h3>
+                <p>
+                    Jika Bapak/Ibu/Saudara/i berkenan memberikan tanda kasih, dapat
+                    melalui rekening berikut:
+                </p> -->
+
+            <!-- <div class="rekening">
+                    <p><strong>Bank BCA</strong></p>
+                    <p>1234567890 a.n. Nama Pengantin</p>
+                    <button onclick="copyToClipboard('1234567890')">
+                        Salin No. Rekening
+                    </button>
+                </div>
+
+                <div class="rekening">
+                    <p><strong>DANA</strong></p>
+                    <p>081234567890 a.n. Nama Pengantin</p>
+                    <button onclick="copyToClipboard('081234567890')">
+                        Salin No. DANA -->
+            <!-- </button>
+                </div>
+            </section> -->
+
+            <script>
+                // Lightbox JS
+                document.querySelectorAll(".gallery img").forEach((img) => {
+                    img.addEventListener("click", () => {
+                        document.getElementById("lightbox-img").src = img.src;
+                        document.getElementById("lightbox").style.display = "flex";
+                    });
+                });
+                document.getElementById("lightbox").addEventListener("click", () => {
+                    document.getElementById("lightbox").style.display = "none";
+                });
+            </script>
+
+            <script>
+                function copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert("Nomor Rekening berhasil disalin!");
+                    });
+                }
+            </script>
+
+            <!-- Firebase SDK -->
+
+            <script type="module">
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+                import {
+                    getDatabase,
+                    ref,
+                    push,
+                    onValue,
+                } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDxTDWAmCVRPdKEKpagtq6VTkmfN6jWpRM",
+                    authDomain: "undangan-digital-95b19.firebaseapp.com",
+                    databaseURL:
+                        "https://undangan-digital-95b19-default-rtdb.firebaseio.com",
+                    projectId: "undangan-digital-95b19",
+                    storageBucket: "undangan-digital-95b19.firebasestorage.app",
+                    messagingSenderId: "70479005856",
+                    appId: "1:70479005856:web:0def5f16b2c3ff0bab61c5",
+                };
+
+                const app = initializeApp(firebaseConfig);
+                const db = getDatabase(app);
+
+                // Fungsi untuk simpan ucapan
+                const form = document.getElementById("bukuTamuForm");
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const nama = document.getElementById("namaBukuTamu").value;
+                    const pesan = document.getElementById("pesanBukuTamu").value;
+
+                    push(ref(db, "ucapan"), {
+                        nama: nama,
+                        pesan: pesan,
+                        waktu: Date.now(),
+                    });
+
+                    form.reset();
+                });
+
+
+                // Menampilkan ucapan
+                const daftarUcapan = document.getElementById("daftarUcapan");
+                onValue(ref(db, "ucapan"), (snapshot) => {
+                    daftarUcapan.innerHTML = "";
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val();
+                        const div = document.createElement("div");
+                        div.innerHTML = `<p><strong>${data.nama}:</strong> ${data.pesan}</p>`;
+                        daftarUcapan.appendChild(div);
+                    });
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const namaTamu = decodeURIComponent(urlParams.get("to") || "Tamu Undangan");
+                    document.getElementById("nama-rsvp").value = namaTamu;
+
+                    const formRSVP = document.getElementById("form-rsvp");
+                    const namaRSVPInput = document.getElementById("nama-rsvp");
+                    const statusSelect = document.getElementById("kehadiran");
+                    const daftarRSVP = document.getElementById("daftar-rsvp");
+                    const resumeRSVP = document.getElementById("resume-rsvp");
+
+                    // Simpan data RSVP ke Firebase
+                    formRSVP.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const nama = namaRSVPInput.value;
+                    const status = statusSelect.value;
+                    push(ref(db, "rsvp"), { nama, status });
+                    formRSVP.reset();
+                    namaRSVPInput.value = nama; // isi ulang nama
+                    });
+
+                    // Ambil data RSVP dari Firebase
+                    onValue(ref(db, "rsvp"), (snapshot) => {
+                    daftarRSVP.innerHTML = "";
+                    let hadir = 0, tidakHadir = 0;
+                    snapshot.forEach((child) => {
+                        const data = child.val();
+                        const p = document.createElement("p");
+                        p.textContent = `${data.nama}: ${data.status}`;
+                        daftarRSVP.appendChild(p);
+
+                        if (data.status === "Hadir") hadir++;
+                        else if (data.status === "Tidak Hadir") tidakHadir++;
+                    });
+                    resumeRSVP.textContent = `Hadir: ${hadir} | Tidak Hadir: ${tidakHadir}`;
+                    });
+                });
+            </script>
+
+            <!-- <a class="rsvp-btn"
+                href="https://wa.me/6281289934763?text=Halo%2C%20saya%20akan%20hadir%20di%20pernikahan%20Pria%20%26%20Wanita"
+                target="_blank">
+                Konfirmasi ke WhatsApp
+            </a> -->
+
+            <p class="footer">Terima kasih atas doa dan kehadirannya.</p>
+        </div>
+    </div>
+
+    <!-- Musik -->
+    <audio id="bg-music" loop hidden>
+        <source
+            src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/SLIPKNOT%20SOSIAL.mp3"
+            type="audio/mpeg" />
+    </audio>
+
+    <!-- Script -->
+    <script>
+        function bukaUndangan() {
+            document.querySelector(".open-btn").style.display = "none";
+            document.getElementById("intro").style.display = "none"; // <- ini penting
+            const undangan = document.getElementById("undangan");
+            undangan.style.display = "block";
+            setTimeout(() => {
+                undangan.classList.add("tampil");
+            }, 10);
+            document.getElementById("bg-music").play();
+            mulaiCountdown();
+            undangan.scrollIntoView({ behavior: "smooth" });
+            ambilUcapan(); // ini ditambahkan
+        }
+
+        function mulaiCountdown() {
+            const countDownDate = new Date("December 17, 2025 10:00:00").getTime();
+            const countdownFunction = setInterval(function () {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    document.getElementById("countdown").innerHTML =
+                        "Acara Sedang Berlangsung!";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                );
+                const minutes = Math.floor(
+                    (distance % (1000 * 60 * 60)) / (1000 * 60)
+                );
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById(
+                    "countdown"
+                ).innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
