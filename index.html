@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Empowering Indonesia 8 Years of Impact</title>
@@ -429,17 +428,6 @@
             color: #26f0dfd3;
         }
 
-
-        /* Responsive adjustment */
-        @media (max-width: 600px) {
-            .container-cover .judul-cover {
-                font-size: 1em;
-            }
-
-            .container-cover .guest-name {
-                font-size: 0.7em;
-            }
-
             @keyframes fadeIn {
                 from {
                     opacity: 0;
@@ -452,27 +440,14 @@
                 }
             }
 
-            @media (max-width: 480px) {
-                h1 {
-                    font-size: 1.8em;
-                }
-
-                h2 {
-                    font-size: 1.4em;
-                }
-
-                h3 {
-                    font-size: 1.2em;
-                }
-            }
-
-        }
+            
         /* Responsive layout untuk mobile */
-@media (max-width: 768px) {
-    .card {
-        padding: 20px;
-        margin: 0 10px;
-    }
+@media (max-width: 600px) {
+    .card, .overlay, .invite-container {
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
     .jadwal-item {
         width: 100%;
