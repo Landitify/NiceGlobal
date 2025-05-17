@@ -513,17 +513,24 @@
 
 <style>
   body {
-    transform-origin: top center;
+    margin: 0;
+    padding: 0;
+  }
+  .fixed-wrapper {
+    width: 1024px;
+    margin: 0 auto;
+    transform-origin: top left;
   }
 
   @media (max-width: 1024px) {
-    body {
-      transform: scale(calc(100vw / 1024));
-      width: 1024px;
+    html, body {
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
     }
-    html {
-      overflow-x: hidden;
+    .fixed-wrapper {
+      transform: scale(calc(100vw / 1024));
+      width: 1024px;
     }
   }
 </style>
@@ -531,6 +538,7 @@
 </head>
 
 <body>
+<div class="fixed-wrapper">
     <div class="overlay">
         <div id="intro" style="margin-bottom: 40px">
             <div class="container-cover">
@@ -909,6 +917,7 @@
             </script>
         </div>
     </div>
+</div>
 </body>
 
 </html>
