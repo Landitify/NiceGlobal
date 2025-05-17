@@ -510,6 +510,24 @@
 
         }
     </style>
+
+<style>
+  body {
+    transform-origin: top center;
+  }
+
+  @media (max-width: 1024px) {
+    body {
+      transform: scale(calc(100vw / 1024));
+      width: 1024px;
+      overflow-x: hidden;
+    }
+    html {
+      overflow-x: hidden;
+    }
+  }
+</style>
+
 </head>
 
 <body>
