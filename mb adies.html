@@ -512,25 +512,35 @@
     </style>
 
 <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
   body {
+    display: flex;
+    justify-content: center;
+    background-color: #000; /* fallback bg */
+  }
+  .fixed-wrapper {
+    width: 1024px;
     transform-origin: top center;
   }
 
   @media (max-width: 1024px) {
-    body {
+    .fixed-wrapper {
       transform: scale(calc(100vw / 1024));
-      width: 1024px;
-      overflow-x: hidden;
-    }
-    html {
-      overflow-x: hidden;
     }
   }
 </style>
 
+
+
 </head>
 
 <body>
+<div class="fixed-wrapper">
     <div class="overlay">
         <div id="intro" style="margin-bottom: 40px">
             <div class="container-cover">
@@ -909,6 +919,7 @@
             </script>
         </div>
     </div>
+</div>
 </body>
 
 </html>
