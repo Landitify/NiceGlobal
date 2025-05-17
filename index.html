@@ -512,25 +512,25 @@
     </style>
 
 <style>
-  body {
+  html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    background-color: #000; /* fallback bg */
   }
   .fixed-wrapper {
     width: 1024px;
-    margin: 0 auto;
-    transform-origin: top left;
+    transform-origin: top center;
   }
 
   @media (max-width: 1024px) {
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
     .fixed-wrapper {
       transform: scale(calc(100vw / 1024));
-      width: 1024px;
     }
   }
 </style>
